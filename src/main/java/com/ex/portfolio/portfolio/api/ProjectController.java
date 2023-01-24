@@ -1,8 +1,8 @@
-package com.ex.portfolio.api;
+package com.ex.portfolio.portfolio.api;
 
 import com.ex.portfolio.dto.ProjectDto;
-import com.ex.portfolio.dto.SaveProjectRequest;
-import com.ex.portfolio.service.ProjectService;
+import com.ex.portfolio.portfolio.dto.SaveProjectRequest;
+import com.ex.portfolio.portfolio.service.ProjectService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -22,9 +22,8 @@ public class ProjectController {
         return ResponseEntity.status(HttpStatus.CREATED).body(projectService.saveProject(saveProjectRequest));
     }
 
-    @GetMapping("/projects")
-    public ResponseEntity<List<ProjectDto>> getProjects(@RequestParam(name = "size") int size,
-                                                        @RequestParam(name = "page") int page) {
-        return ResponseEntity.ok(projectService.getProjects(size,page));
+    @GetMapping
+    public ResponseEntity<List<ProjectDto>> getProjects() {
+        return ResponseEntity.ok(projectService.getProjects(2, 3));
     }
 }

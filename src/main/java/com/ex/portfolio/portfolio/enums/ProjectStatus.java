@@ -1,4 +1,4 @@
-package com.ex.portfolio.enums;
+package com.ex.portfolio.portfolio.enums;
 
 public enum ProjectStatus {
     CREATED("CREATED"),
@@ -7,7 +7,9 @@ public enum ProjectStatus {
 
     private final String status;
 
-    ProjectStatus(String status) {this.status = status;}
+    ProjectStatus(String status) {
+        this.status = status;
+    }
 
     public String getStatus() {
         return status;

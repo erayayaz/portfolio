@@ -1,11 +1,10 @@
-package com.ex.portfolio.service;
+package com.ex.portfolio.portfolio.service;
 
-import com.ex.portfolio.dto.ProjectGetRequest;
 import com.ex.portfolio.dto.ProjectDto;
-import com.ex.portfolio.dto.SaveProjectRequest;
+import com.ex.portfolio.portfolio.dto.SaveProjectRequest;
 import com.ex.portfolio.dto.converter.ProjectDtoConverter;
-import com.ex.portfolio.model.Project;
-import com.ex.portfolio.repository.ProjectRepository;
+import com.ex.portfolio.portfolio.model.Project;
+import com.ex.portfolio.portfolio.repository.ProjectRepository;
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.PageRequest;
@@ -13,7 +12,10 @@ import org.springframework.stereotype.Service;
 
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
-import java.util.*;
+import java.util.Calendar;
+import java.util.Date;
+import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 @RequiredArgsConstructor
@@ -44,14 +46,14 @@ public class ProjectService {
 
     @Transactional
     public List<ProjectDto> getProjects(int size, int page) {
-       return projectRepository.findAll(PageRequest.of(page, size))
-               .getContent()
-               .stream()
-               .map(projectDtoConverter::convert)
-               .collect(Collectors.toList());
+        return projectRepository.findAll(PageRequest.of(page, size))
+                .getContent()
+                .stream()
+                .map(projectDtoConverter::convert)
+                .collect(Collectors.toList());
     }
 
-    private String getDate () {
+    private String getDate() {
         Date date = Calendar.getInstance().getTime();
         DateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy HH:mm:ss");
         return dateFormat.format(date);

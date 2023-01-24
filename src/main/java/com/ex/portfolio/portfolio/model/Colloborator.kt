@@ -1,4 +1,4 @@
-package com.ex.portfolio.model
+package com.ex.portfolio.portfolio.model
 
 //will be added
 data class Colloborator(

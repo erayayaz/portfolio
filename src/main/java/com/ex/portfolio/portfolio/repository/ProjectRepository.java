@@ -1,6 +1,6 @@
-package com.ex.portfolio.repository;
+package com.ex.portfolio.portfolio.repository;
 
-import com.ex.portfolio.model.Project;
+import com.ex.portfolio.portfolio.model.Project;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.Optional;

@@ -1,4 +1,4 @@
-package com.ex.portfolio.dto
+package com.ex.portfolio.portfolio.dto
 
 data class ProjectGetRequest(
     val page: Int,

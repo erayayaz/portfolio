@@ -1,9 +1,7 @@
 package com.ex.portfolio.dto.converter;
 
 import com.ex.portfolio.dto.ProjectDto;
-import com.ex.portfolio.model.Project;
-
-import java.util.Optional;
+import com.ex.portfolio.portfolio.model.Project;
 
 public class ProjectDtoConverter {
     public ProjectDto convert(Project from) {
