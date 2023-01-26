@@ -22,8 +22,8 @@ public class ProjectController {
         return ResponseEntity.status(HttpStatus.CREATED).body(projectService.saveProject(saveProjectRequest));
     }
 
-    @GetMapping
-    public ResponseEntity<List<ProjectDto>> getProjects() {
-        return ResponseEntity.ok(projectService.getProjects(2, 3));
-    }
+    @GetMapping("/list")
+    public ResponseEntity<List<ProjectDto>> getProjects(@RequestParam(name = "size")int size, @RequestParam(name = "page")int page) {
+        return ResponseEntity.ok(projectService.getProjects(size, page));
+    } 
 }

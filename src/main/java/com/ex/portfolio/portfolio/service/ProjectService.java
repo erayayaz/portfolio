@@ -2,7 +2,7 @@ package com.ex.portfolio.portfolio.service;
 
 import com.ex.portfolio.dto.ProjectDto;
 import com.ex.portfolio.portfolio.dto.SaveProjectRequest;
-import com.ex.portfolio.dto.converter.ProjectDtoConverter;
+import com.ex.portfolio.portfolio.dto.converter.ProjectDtoConverter;
 import com.ex.portfolio.portfolio.model.Project;
 import com.ex.portfolio.portfolio.repository.ProjectRepository;
 import jakarta.transaction.Transactional;
@@ -18,8 +18,8 @@ import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
-@RequiredArgsConstructor
 @Service
+@RequiredArgsConstructor
 public class ProjectService {
 
     private final ProjectRepository projectRepository;
@@ -28,15 +28,15 @@ public class ProjectService {
     @Transactional
     public ProjectDto saveProject(SaveProjectRequest saveProjectRequest) {
 
-        Optional<Project> project = projectRepository.findByProjectName(saveProjectRequest.getName());
-        if (project.isPresent()) {
-
+        Optional<Project> project = Optional.ofNullable(projectRepository.findByName(saveProjectRequest.getName()));
+        if (!project.isPresent()) {
+            throw new RuntimeException();
         }
 
         Project newProject = new Project(
                 saveProjectRequest.getName(),
                 saveProjectRequest.getDescription(),
-                null,
+                saveProjectRequest.getImage(),
                 saveProjectRequest.getStartDate() != null ? saveProjectRequest.getStartDate() : getDate(),
                 saveProjectRequest.getEndDate() != null ? saveProjectRequest.getEndDate() : null,
                 saveProjectRequest.getStatus());
