@@ -1,7 +1,6 @@
 package com.ex.portfolio.portfolio.model;
 
 import com.ex.portfolio.portfolio.enums.ProjectStatus
-import com.ex.portfolio.portfolio.model.Image
 import jakarta.persistence.*
 import lombok.AllArgsConstructor
 
@@ -15,11 +14,11 @@ data class Project(
     val id: Int?,
     val name: String,
     val description: String,
-
-    @OneToOne
-    val image: Image,
     val startDate: String,
     val endDate: String?,
+
+    @OneToOne(cascade = [CascadeType.ALL])
+    val image: Image?,
 
     @Enumerated(EnumType.STRING)
     val status: ProjectStatus
@@ -32,7 +31,7 @@ data class Project(
         endDate: String?,
         status: ProjectStatus
     ) :
-            this(0, name, description, image, startDate, endDate, status) {
+            this(0, name, description, startDate, endDate, image, status) {
     }
 
 }

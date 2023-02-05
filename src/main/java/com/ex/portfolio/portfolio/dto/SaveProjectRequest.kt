@@ -8,7 +8,7 @@ import jakarta.persistence.Enumerated
 data class SaveProjectRequest(
     val name: String,
     val description: String,
-    val image: Image,
+    val image: Image?,
     val startDate: String?,
     val endDate: String?,
 

@@ -12,10 +12,7 @@ import org.springframework.stereotype.Service;
 
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
-import java.util.Calendar;
-import java.util.Date;
-import java.util.List;
-import java.util.Optional;
+import java.util.*;
 import java.util.stream.Collectors;
 
 @Service
@@ -29,7 +26,7 @@ public class ProjectService {
     public ProjectDto saveProject(SaveProjectRequest saveProjectRequest) {
 
         Optional<Project> project = Optional.ofNullable(projectRepository.findByName(saveProjectRequest.getName()));
-        if (!project.isPresent()) {
+        if (project.isPresent()) {
             throw new RuntimeException();
         }
 

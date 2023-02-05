@@ -8,7 +8,7 @@ import lombok.AllArgsConstructor
 @AllArgsConstructor
 data class Image(
     @Id
-    @Column(name = "image_id", unique = true, nullable = false, length = 20)
+    @Column(name = "image_id", unique = true, nullable = true, length = 20)
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     val id: Int?,
     val url: String?

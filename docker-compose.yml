@@ -1,13 +1,45 @@
 version: '3.1'
 
 services:
-  postgresdb:
-    image: postgres:13-alpine
-    container_name: postgresdb
+  postgresqldb:
+    image: postgres:latest
+    container_name: postgresqldb
     restart: always
+    ports:
+      - "5432:5432"
+    expose:
+      - 5432
     environment:
       POSTGRES_USER: postgres
       POSTGRES_PASSWORD: fresh
-      POSTGRES_DB: dilim
+      POSTGRES_DB: portfolio
+    networks:
+      - shared-net
+  redisdb:
+    image: "redis"
     ports:
-      - "5432:5432"
+      - "6379:6379"
+    environment:
+      - ALLOW_EMPTY_PASSWORD=yes
+    networks:
+      - shared-net
+  app:
+    image: app
+    build:
+      context: ./
+      dockerfile: Dockerfile
+    ports:
+      - "8082:8082"
+    depends_on:
+      - postgresqldb
+    restart: always
+    environment:
+      - dbc:postgresql://localhost:5432/portfolio?useSSL=false&allowPublicKeyRetrieval=true
+      - SERVER_PORT=8082
+      - spring.redis.host=redis
+      - spring.redis.port=6379
+    networks:
+      - shared-net
+networks:
+  shared-net:
+    driver: bridge
