@@ -23,8 +23,8 @@ services:
       - ALLOW_EMPTY_PASSWORD=yes
     networks:
       - shared-net
-  app:
-    image: app
+  app: 
+    image: portfolio
     build:
       context: ./
       dockerfile: Dockerfile
@@ -34,7 +34,7 @@ services:
       - postgresqldb
     restart: always
     environment:
-      - dbc:postgresql://localhost:5432/portfolio?useSSL=false&allowPublicKeyRetrieval=true
+      - jdbc:postgresql://postgresqldb:5432/portfolio?useSSL=false&allowPublicKeyRetrieval=true
       - SERVER_PORT=8082
       - spring.redis.host=redis
       - spring.redis.port=6379
