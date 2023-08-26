@@ -1,13 +1,11 @@
 package com.ex.portfolio.portfolio.service;
 
-import com.ex.portfolio.dto.ProjectDto;
 import com.ex.portfolio.portfolio.dto.AboutDto;
 import com.ex.portfolio.portfolio.dto.converter.AboutDtoConverter;
 import com.ex.portfolio.portfolio.exception.GenericException;
 import com.ex.portfolio.portfolio.model.About;
 import com.ex.portfolio.portfolio.repository.AboutRepository;
 import lombok.RequiredArgsConstructor;
-import org.springframework.data.domain.PageRequest;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -41,7 +39,11 @@ public class AboutService {
                 .findFirst()
                 .map(aboutDtoConverter::convert);
 
-        return optAbout.isEmpty() ? new AboutDto() : optAbout.get();
+        if (optAbout.isEmpty()) {
+            throw new GenericException(HttpStatus.NO_CONTENT, "No record for about");
+        }
+
+        return optAbout.get();
     }
 
     @Transactional

@@ -15,4 +15,12 @@ data class Contact(
     val instaUrl: String,
     val linkedInUrl: String,
     val twitterUrl: String,
-)
+) {
+    constructor(
+        email: String,
+        instaUrl: String,
+        linkedInUrl: String,
+        twitterUrl: String
+    ) : this(0, email, instaUrl, linkedInUrl, twitterUrl) {
+    }
+}

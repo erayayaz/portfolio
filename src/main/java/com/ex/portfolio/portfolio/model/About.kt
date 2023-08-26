@@ -15,5 +15,6 @@ data class About(
 ) {
     constructor(
         aboutText: String
-    ) : this(0,aboutText) {}
+    ) : this(0, aboutText) {
+    }
 }

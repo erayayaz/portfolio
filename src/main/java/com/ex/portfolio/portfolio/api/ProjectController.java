@@ -23,7 +23,7 @@ public class ProjectController {
     }
 
     @GetMapping("/list")
-    public ResponseEntity<List<ProjectDto>> getProjects(@RequestParam(name = "size")int size, @RequestParam(name = "page")int page) {
+    public ResponseEntity<List<ProjectDto>> getProjects(@RequestParam(name = "size") int size, @RequestParam(name = "page") int page) {
         return ResponseEntity.ok(projectService.getProjects(size, page));
-    } 
+    }
 }
