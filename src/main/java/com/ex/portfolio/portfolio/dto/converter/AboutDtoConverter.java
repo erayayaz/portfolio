@@ -6,10 +6,7 @@ import org.springframework.stereotype.Component;
 
 @Component
 public class AboutDtoConverter {
-
     public AboutDto convert(About from) {
-        return new AboutDto(
-                from.getAboutText()
-        );
+        return new AboutDto(from.getAboutText());
     }
 }
