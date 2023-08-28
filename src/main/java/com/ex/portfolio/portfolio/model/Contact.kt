@@ -21,6 +21,5 @@ data class Contact(
         instaUrl: String,
         linkedInUrl: String,
         twitterUrl: String
-    ) : this(0, email, instaUrl, linkedInUrl, twitterUrl) {
-    }
+    ) : this(0, email, instaUrl, linkedInUrl, twitterUrl)
 }

@@ -1,4 +1,4 @@
-package com.ex.portfolio.portfolio.model;
+package com.ex.portfolio.portfolio.model
 
 import com.ex.portfolio.portfolio.enums.ProjectStatus
 import jakarta.persistence.*
@@ -30,8 +30,5 @@ data class Project(
         startDate: String,
         endDate: String?,
         status: ProjectStatus
-    ) :
-            this(0, name, description, startDate, endDate, image, status) {
-    }
-
+    ) : this(0, name, description, startDate, endDate, image, status)
 }

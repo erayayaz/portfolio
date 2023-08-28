@@ -8,7 +8,6 @@ import com.ex.portfolio.portfolio.repository.AboutRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 
 import java.util.Optional;
 
@@ -19,20 +18,6 @@ public class AboutService {
     private final AboutRepository aboutRepository;
     private final AboutDtoConverter aboutDtoConverter;
 
-    @Transactional
-    public AboutDto saveAbout(AboutDto aboutDto) {
-        String aboutText = aboutDto.getAboutText();
-        Optional<About> about = getAboutWithMessage(aboutText);
-
-        if (about.isPresent()) {
-            throw new GenericException(HttpStatus.CONFLICT, "There is a same record with same about message");
-        }
-
-        About newAbout = new About(aboutText);
-        return aboutDtoConverter.convert(aboutRepository.save(newAbout));
-    }
-
-    @Transactional
     public AboutDto getAbout() {
         Optional<AboutDto> optAbout = aboutRepository.findAll()
                 .stream()
@@ -44,19 +29,6 @@ public class AboutService {
         }
 
         return optAbout.get();
-    }
-
-    @Transactional
-    public AboutDto updateAbout(AboutDto aboutDto) {
-        String aboutText = aboutDto.getAboutText();
-        Optional<About> about = getAboutWithMessage(aboutText);
-
-        if (about.isEmpty()) {
-            throw new GenericException(HttpStatus.NOT_FOUND, "There is a no record with about message");
-        }
-
-        About updatedAbout = new About(about.get().getId(), aboutText);
-        return aboutDtoConverter.convert(aboutRepository.save(updatedAbout));
     }
 
     private Optional<About> getAboutWithMessage(String aboutText) {

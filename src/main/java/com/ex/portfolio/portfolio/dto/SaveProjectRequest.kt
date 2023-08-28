@@ -14,4 +14,4 @@ data class SaveProjectRequest(
 
     @Enumerated(value = EnumType.STRING)
     val status: ProjectStatus
-) {}
+)

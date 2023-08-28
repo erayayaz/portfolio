@@ -6,7 +6,5 @@ import lombok.NoArgsConstructor
 data class AboutDto(
     val aboutText: String,
 ) {
-    constructor() : this("") {
-
-    }
+    constructor() : this("")
 }
