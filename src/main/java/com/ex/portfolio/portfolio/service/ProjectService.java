@@ -24,4 +24,11 @@ public class ProjectService {
                 .map(projectDtoConverter::convert)
                 .collect(Collectors.toList());
     }
+
+    public List<ProjectDto> getProjects2() {
+        return projectRepository.findAll()
+                .stream()
+                .map(projectDtoConverter::convert)
+                .collect(Collectors.toList());
+    }
 }

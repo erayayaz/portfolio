@@ -23,7 +23,6 @@ public class ContactService {
         return getContactDto();
     }
 
-    @Transactional
     public boolean sendMail() {
 
         ContactDto contactDto = getContactDto();
